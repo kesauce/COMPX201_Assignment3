@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class StrHashTable{
+public class StrHashTableCollisions{
     private Node[] table = new Node[9];
     
     // Set the set size for the folding hash function
@@ -24,8 +24,20 @@ public class StrHashTable{
             Node newNode = new Node(k, v);
             table[hashCode] = newNode;
         }
+        // Collision detected
         else{
-            System.out.println("Insert unsuccessful: collision occured");
+            // Check if the index is already a bucket
+            Node currentNode = table[hashCode];
+            if(currentNode.getNext() != null){
+                // Find the last node in the bucket
+                while(currentNode.getNext() != null){
+                    currentNode = currentNode.getNext();
+                }
+
+                // Add the new node next of the last node
+                Node newNode = new Node(k, v);
+                currentNode.setNext(newNode);
+            }
         }
     }
 

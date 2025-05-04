@@ -94,8 +94,32 @@ public class StrHashTable{
      * Doubles the size of the hash function when the capacity reaches 80%
      */
     public void rehash(){
+        // Get the new size of the array
+        int newSize = 2 * table.length;
 
-    }
+        // Store the old array
+        Node[] oldTable = table;
+
+        // Create a new table and replace it
+        Node[] newTable = new Node[newSize];
+        table = newTable;
+
+        // Rehash each value in the old table into the new one
+        for (Node node : oldTable) {
+            if(node != null){
+                // Get the node's key and variables
+                String key = node.getKey();
+                String value = node.getValue();
+
+                // Grab the hashcode
+                int hashCode = hashFunction(key);
+
+                // Add the new node to the new array
+                Node newNode = new Node(key, value);
+                table[hashCode] = newNode;
+            }
+        }
+    }   
 
     /**
      * Checks if the hashtable contains a given key

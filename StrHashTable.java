@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class StrHashTable{
-    private Node[] table = new Node[9];
+    private Node[] table = new Node[10];
     
     // Set the set size for the folding hash function
     final int setSizeHashing = 3;
@@ -200,10 +200,16 @@ public class StrHashTable{
 
         // Loop through each node and print its key and value
         for (Node node : table) {
-            String key = node.getKey();
-            String value = node.getValue();
-
-            System.out.println(index + ": " + key + ", " + value);
+            // Don't print null values
+            if(node != null){
+                String key = node.getKey();
+                String value = node.getValue();
+    
+                System.out.println(index + ": " + key + ", " + value);  
+            }
+            else{
+                System.out.println(index + ": null, null");
+            }
 
             index++;
         }

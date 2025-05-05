@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class StrHashTableCollisions{
-    private Node[] table = new Node[9];
+    private Node[] table = new Node[10];
     
     // Set the set size for the folding hash function
     final int setSizeHashing = 3;
@@ -26,15 +26,14 @@ public class StrHashTableCollisions{
         }
         // Collision detected
         else{
+            System.out.println("Collision detected");
             Node headNode = table[hashCode];
-            if(headNode.getNext() != null){
-                // Add the new node at the head and set the new node's next to be the head
-                Node newNode = new Node(k, v);
-                newNode.setNext(headNode);
+            // Add the new node at the head and set the new node's next to be the head
+            Node newNode = new Node(k, v);
+            newNode.setNext(headNode);
 
-                // Replace the node in the table with the new node
-                table[hashCode] = newNode;
-            }
+            // Replace the node in the table with the new node
+            table[hashCode] = newNode;
         }
     }
 
@@ -60,12 +59,18 @@ public class StrHashTableCollisions{
 
                 // While current node's key doesn't match target key
                 while(!currentNode.getKey().equals(k)){
-                    currentNode = currentNode.getNext();
                     previousNode = currentNode;
+                    currentNode = currentNode.getNext();
                 }
 
                 // When it matches then delete that node
-                previousNode.setNext(currentNode.getNext());
+                if(previousNode == null){
+                    table[hashCode] = currentNode.getNext();
+                }
+                else{
+                    previousNode.setNext(currentNode.getNext());
+                }
+                
                 
             }
         }
@@ -188,7 +193,7 @@ public class StrHashTableCollisions{
             else{
                 // Check if the key exists in the linked list
                 Node currentNode = table[hashCode];
-                while(currentNode.getNext() != null){
+                while(currentNode != null){
                     // If key matches k then return true
                     if(currentNode.getKey().equals(k)){
                         return true;
@@ -300,8 +305,12 @@ public class StrHashTableCollisions{
 
         // Loop through each node and print its key and value
         for (Node node : table) {
+            // Handling null values
+            if(node == null){
+                System.out.println(index + ": null, null");
+            }
             // Handling non-collision values
-            if(node.getNext() == null){
+            else if(node.getNext() == null){
                 String key = node.getKey();
                 String value = node.getValue();
 
@@ -314,8 +323,8 @@ public class StrHashTableCollisions{
                 Node currentNode = node;
 
                 while(currentNode != null){
-                    String key = node.getKey();
-                    String value = node.getValue();
+                    String key = currentNode.getKey();
+                    String value = currentNode.getValue();
 
                     output += "(" + key + ", " + value + ")";
 

@@ -38,7 +38,7 @@ public class StrHashTable{
         int hashCode = hashFunction(k);
 
         // If the node exists then delete it
-        if(table[hashCode] == null){
+        if(table[hashCode] != null){
             table[hashCode] = null;
         }
         else{
@@ -116,12 +116,8 @@ public class StrHashTable{
                 String key = node.getKey();
                 String value = node.getValue();
 
-                // Grab the hashcode
-                int hashCode = hashFunction(key);
-
-                // Add the new node to the new array
-                Node newNode = new Node(key, value);
-                table[hashCode] = newNode;
+                // Insert the value to the new table
+                this.insert(key, value);
             }
         }
     }   
@@ -136,7 +132,7 @@ public class StrHashTable{
         int hashCode = hashFunction(k);
 
         // If the hashtable has a value in that hashcode then return true
-        if(table[hashCode] != null){
+        if(table[hashCode] != null && table[hashCode].getKey().equals(k)){
             return true;
         }
         else{

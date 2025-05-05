@@ -26,17 +26,14 @@ public class StrHashTableCollisions{
         }
         // Collision detected
         else{
-            // Check if the index is already a bucket
-            Node currentNode = table[hashCode];
-            if(currentNode.getNext() != null){
-                // Find the last node in the bucket
-                while(currentNode.getNext() != null){
-                    currentNode = currentNode.getNext();
-                }
-
-                // Add the new node next of the last node
+            Node headNode = table[hashCode];
+            if(headNode.getNext() != null){
+                // Add the new node at the head and set the new node's next to be the head
                 Node newNode = new Node(k, v);
-                currentNode.setNext(newNode);
+                newNode.setNext(headNode);
+
+                // Replace the node in the table with the new node
+                table[hashCode] = newNode;
             }
         }
     }
@@ -50,8 +47,27 @@ public class StrHashTableCollisions{
         int hashCode = hashFunction(k);
 
         // If the node exists then delete it
-        if(table[hashCode] == null){
-            table[hashCode] = null;
+        if(table[hashCode] != null){
+            // Check if the node has no linked list attached to it
+            if(table[hashCode].getNext() == null){
+                // Delete the node as normal
+                table[hashCode] = null;
+            }
+            // Find the node in the linked list with the key
+            else{
+                Node currentNode = table[hashCode];
+                Node previousNode = null;
+
+                // While current node's key doesn't match target key
+                while(!currentNode.getKey().equals(k)){
+                    currentNode = currentNode.getNext();
+                    previousNode = currentNode;
+                }
+
+                // When it matches then delete that node
+                previousNode.setNext(currentNode.getNext());
+                
+            }
         }
         else{
             System.out.println("Delete unsuccessful: key does not exist");
@@ -124,16 +140,32 @@ public class StrHashTableCollisions{
         // Rehash each value in the old table into the new one
         for (Node node : oldTable) {
             if(node != null){
-                // Get the node's key and variables
-                String key = node.getKey();
-                String value = node.getValue();
 
-                // Grab the hashcode
-                int hashCode = hashFunction(key);
+                // If node is not a collision
+                if (node.getNext() == null){
+                    // Get the node's key and variables
+                    String key = node.getKey();
+                    String value = node.getValue();
 
-                // Add the new node to the new array
-                Node newNode = new Node(key, value);
-                table[hashCode] = newNode;
+                    // Insert the value to the new table
+                    this.insert(key, value);
+                }
+                else{
+                    // Copy the linked list into the table
+                    Node currentNode = node;
+
+                    while(currentNode.getNext() != null){
+                        // Get the node's key and variables
+                        String key = currentNode.getKey();
+                        String value = currentNode.getValue();
+
+                        // Insert the new node
+                        this.insert(key, value);
+
+                        // Get the next node
+                        currentNode = currentNode.getNext();
+                    }
+                }
             }
         }
     }   
@@ -147,9 +179,29 @@ public class StrHashTableCollisions{
         // Get the hashcode
         int hashCode = hashFunction(k);
 
-        // If the hashtable has a value in that hashcode then return true
+        // If the hashtable has a value in that hashcode
         if(table[hashCode] != null){
-            return true;
+            // If there is only 1 value in the table index and key matches key
+            if(table[hashCode].getNext() == null && table[hashCode].getKey().equals(k)){
+                return true;
+            }
+            else{
+                // Check if the key exists in the linked list
+                Node currentNode = table[hashCode];
+                while(currentNode.getNext() != null){
+                    // If key matches k then return true
+                    if(currentNode.getKey().equals(k)){
+                        return true;
+                    }
+                    else{
+                        currentNode = currentNode.getNext();
+                    }
+                
+                }
+
+                // Key not found
+                return false;
+            }
         }
         else{
             return false;
@@ -167,8 +219,28 @@ public class StrHashTableCollisions{
 
         // Checks if the value exists
         if(this.contains(k)){
-            String value = table[hashCode].getValue();
-            return value;
+            // If handling no collisions
+            if(table[hashCode].getNext() == null){
+                String value = table[hashCode].getValue();
+                return value;
+            }
+            else{
+                // Check if the key exists in the linked list
+                Node currentNode = table[hashCode];
+                while(currentNode.getNext() != null){
+                    // If key matches k then return the value
+                    if(currentNode.getKey().equals(k)){
+                        return currentNode.getValue();
+                    }
+                    else{
+                        currentNode = currentNode.getNext();
+                    }
+                
+                }
+
+                System.out.println("Error: Key does not exist");
+                return "";
+            }
         }
         else{
             System.out.println("Error: Key does not exist");
@@ -201,7 +273,19 @@ public class StrHashTableCollisions{
         // Count the non-empty nodes in the hashtable
         for (Node node : table) {
             if (node != null){
-                count++;
+                // If handling non-collision nodes
+                if(node.getNext() == null){
+                    count++;
+                }
+                else{
+                    // Count each node in the linked list
+                    Node currentNode = node;
+                    while(currentNode != null){
+                        count++;
+                        currentNode = currentNode.getNext();
+                    }
+                    
+                }
             }
         }
 
@@ -216,12 +300,34 @@ public class StrHashTableCollisions{
 
         // Loop through each node and print its key and value
         for (Node node : table) {
-            String key = node.getKey();
-            String value = node.getValue();
+            // Handling non-collision values
+            if(node.getNext() == null){
+                String key = node.getKey();
+                String value = node.getValue();
 
-            System.out.println(index + ": " + key + ", " + value);
+                // Print output
+                System.out.println(index + ": " + key + ", " + value);
+            }
+            else{
+                // Print out each node in the linked list
+                String output = index + ": ";
+                Node currentNode = node;
+
+                while(currentNode != null){
+                    String key = node.getKey();
+                    String value = node.getValue();
+
+                    output += "(" + key + ", " + value + ")";
+
+                    currentNode = currentNode.getNext();
+                }
+
+                // Print output
+                System.out.println(output);
+            }
 
             index++;
         }
+
     }
 }

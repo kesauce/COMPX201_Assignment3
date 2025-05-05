@@ -326,7 +326,7 @@ public class StrHashTableCollisions{
                     String key = currentNode.getKey();
                     String value = currentNode.getValue();
 
-                    output += "(" + key + ", " + value + ")";
+                    output += "(" + key + ", " + value + ") ";
 
                     currentNode = currentNode.getNext();
                 }

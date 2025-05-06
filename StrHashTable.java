@@ -98,7 +98,7 @@ public class StrHashTable{
     /**
      * Doubles the size of the hash function when the capacity reaches 80%
      */
-    public void rehash(){
+    private void rehash(){
         // Get the new size of the array
         int newSize = 2 * table.length;
 

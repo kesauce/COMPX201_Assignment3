@@ -13,10 +13,10 @@ public class Main{
 
         //System.out.println(hashtable.isEmpty());
 
-        hashtable.dump();
+        //hashtable.dump();
 
         //System.out.println(hashtable.contains("k"));
-        //System.out.println(hashtable.get("k"));
+        System.out.println(hashtable.get("j"));
 
         hashtable.delete("pluh");
         hashtable.delete("sdfsdfds");
@@ -27,7 +27,7 @@ public class Main{
 
         //System.out.println(hashtable.isEmpty());
 
-        hashtable.dump();
+        //hashtable.dump();
         
     }
 }

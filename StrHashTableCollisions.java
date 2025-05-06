@@ -232,7 +232,7 @@ public class StrHashTableCollisions{
             else{
                 // Check if the key exists in the linked list
                 Node currentNode = table[hashCode];
-                while(currentNode.getNext() != null){
+                while(currentNode != null){
                     // If key matches k then return the value
                     if(currentNode.getKey().equals(k)){
                         return currentNode.getValue();

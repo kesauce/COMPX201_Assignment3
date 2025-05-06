@@ -17,6 +17,9 @@ public class StrHashTableCollisionsTest {
         System.setOut(standardOut);
     }
 
+    /**
+     * Tests whether dump() is printing the hashtable, with hashcode, key, and values, correctly
+     */
     @Test
     @DisplayName("Test dump()")
     public void testDump1(){
@@ -42,6 +45,10 @@ public class StrHashTableCollisionsTest {
         // Assert
         Assertions.assertEquals(expected, actual);
     }
+    
+    /**
+     * Tests whether insert() is inserting one value
+     */
     @Test
     @DisplayName("Test insert(), dependant on dump()")
     public void testInsert1() {
@@ -70,6 +77,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether insert() is handling collisions correctly
+     */
     @Test
     @DisplayName("Test insert(), dependent on dump()")
     public void testInsert2(){
@@ -99,6 +109,60 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether insert() is handling duplicate keys correctly
+     */
+    @Test
+    @DisplayName("Test insert()")
+    public void testInsert3(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        hashTable.insert("key1", "value1");
+        hashTable.insert("key1", "value2");
+
+        String actual = outputStreamCaptor.toString().trim();
+        String expected = "Cannot insert duplicate keys";
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests whether insert() is inserting 2 values correctly
+     */
+    @Test
+    @DisplayName("Test insert(), dependent on dump()")
+    public void testInsert4(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        hashTable.insert("key1", "value1");
+        hashTable.insert("keykey", "valuevalue");
+        hashTable.dump();
+
+        String actual = outputStreamCaptor.toString().trim();
+        String expected = 
+                            "0: null, null\r\n" + 
+                            "1: key1, value1\r\n" + 
+                            "2: keykey, valuevalue\r\n" + 
+                            "3: null, null\r\n" + 
+                            "4: null, null\r\n" + 
+                            "5: null, null\r\n" + 
+                            "6: null, null\r\n" + 
+                            "7: null, null\r\n" +
+                            "8: null, null\r\n" + 
+                            "9: null, null";
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+    
+    /**
+     * Tests whether delete() is deleting 1 value correctly
+     */
     @Test
     @DisplayName("Test delete(), dependent on insert() and dump()")
     public void testDelete1(){
@@ -127,6 +191,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether delete() is deleting the head of the bucket linked list correctly
+     */
     @Test
     @DisplayName("Test delete(), dependent on insert() and dump()")
     public void testDelete2(){
@@ -157,6 +224,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether delete() is deleting the last of the bucket linked list correctly
+     */
     @Test
     @DisplayName("Test delete(), dependent on insert() and dump()")
     public void testDelete3(){
@@ -187,6 +257,48 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether delete() is handling non-existing keys correctly without collisions
+     */
+    @Test
+    @DisplayName("Test delete()")
+    public void testDelete4(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        hashTable.delete("key2");
+
+        String actual = outputStreamCaptor.toString().trim();
+        String expected = "Delete unsuccessful: key does not exist";
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests whether delete() is handling non-existing keys correctly with collisions
+     */
+    @Test
+    @DisplayName("Test delete()")
+    public void testDelete5(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        hashTable.insert("key1", "value1");
+        hashTable.delete("key2");
+
+        String actual = outputStreamCaptor.toString().trim();
+        String expected = "Delete unsuccessful: key does not exist";
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests whether contains() works without collisions
+     */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
     public void testContains1(){
@@ -201,6 +313,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertTrue(actual);
     }
 
+    /**
+     * Tests whether contains() can detect the last value of a bucket linked list correctly
+     */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
     public void testContains2(){
@@ -216,6 +331,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertTrue(actual);
     }
 
+    /**
+     * Tests whether contains() can detect the head value of a bucket linked list correctly
+     */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
     public void testContains3(){
@@ -231,6 +349,26 @@ public class StrHashTableCollisionsTest {
         Assertions.assertTrue(actual);
     }
 
+    /**
+     * Tests whether contains() is handling non-existing values
+     */
+    @Test
+    @DisplayName("Test contains(), dependent on insert()")
+    public void testContains5(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        hashTable.insert("key1", "value1");
+        boolean actual = hashTable.contains("key2");
+
+        // Assert
+        Assertions.assertFalse(actual);
+    }
+
+    /**
+     * Tests whether get() can grab the value of a key without collisions
+     */
     @Test
     @DisplayName("Test get(), dependent on insert()")
     public void testGet1(){
@@ -246,6 +384,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether get() can grab the last value of a bucket linked list of a key 
+     */
     @Test
     @DisplayName("Test get(), dependent on insert()")
     public void testGet2(){
@@ -262,6 +403,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether get() can grab the head value of a bucket linked list of a key
+     */
     @Test
     @DisplayName("Test get(), dependent on insert()")
     public void testGet3(){
@@ -278,6 +422,26 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether get() handles non-existing keys properly
+     */
+    @Test
+    @DisplayName("Test get()")
+    public void testGet4(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        String actual = hashTable.get("key");
+        String expected = "";
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests whether isEmpty() can detect values
+     */
     @Test
     @DisplayName("Test isEmpty(), dependent on insert()")
     public void testIsEmpty1(){
@@ -292,6 +456,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertFalse(actual);
     }
 
+    /**
+     * Tests whether isEmpty() can detect when a hashtable is empty
+     */
     @Test
     @DisplayName("Test isEmpty(), dependent on insert()")
     public void testIsEmpty2(){
@@ -305,6 +472,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertTrue(actual);
     }
 
+    /**
+     * Tests whether isEmpty() can detect when a hashtable is empty after deleting
+     */
     @Test
     @DisplayName("Test isEmpty(), dependent on insert()")
     public void testIsEmpty3(){
@@ -320,6 +490,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertTrue(actual);
     }
 
+    /**
+     * Tests whether count() counts values without collisions
+     */
     @Test
     @DisplayName("Test count(), dependent on insert()")
     public void testCount1(){
@@ -335,6 +508,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether count() counts values with collisions
+     */
     @Test
     @DisplayName("Test count(), dependent on insert()")
     public void testCount2(){
@@ -351,6 +527,9 @@ public class StrHashTableCollisionsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether count() counts an empty hashtable
+     */
     @Test
     @DisplayName("Test count(), dependent on insert()")
     public void testCount3(){

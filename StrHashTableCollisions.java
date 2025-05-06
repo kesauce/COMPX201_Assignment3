@@ -19,6 +19,12 @@ public class StrHashTableCollisions{
             rehash();
         }
 
+        // Checks if the key already exists in the hashtable
+        if(this.contains(k)){
+            System.out.println("Cannot insert duplicate keys");
+            return;
+        }
+
         // If the array has a free spot then add the node
         if(table[hashCode] == null){
             Node newNode = new Node(k, v);
@@ -46,7 +52,7 @@ public class StrHashTableCollisions{
         int hashCode = hashFunction(k);
 
         // If the node exists then delete it
-        if(table[hashCode] != null){
+        if(this.contains(k)){
             // Check if the node has no linked list attached to it
             if(table[hashCode].getNext() == null){
                 // Delete the node as normal
@@ -59,8 +65,10 @@ public class StrHashTableCollisions{
 
                 // While current node's key doesn't match target key
                 while(!currentNode.getKey().equals(k)){
+
                     previousNode = currentNode;
                     currentNode = currentNode.getNext();
+
                 }
 
                 // When it matches then delete that node
@@ -70,7 +78,6 @@ public class StrHashTableCollisions{
                 else{
                     previousNode.setNext(currentNode.getNext());
                 }
-                
                 
             }
         }

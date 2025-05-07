@@ -96,32 +96,27 @@ public class StrHashTableCollisions{
         int size = table.length;
 
         // Store each ascii value of each character in a list
-        char[] characterArray = k.toCharArray();
-        ArrayList<Integer> asciiList = new ArrayList<Integer>();
+        int[] asciiArray = new int[k.length()];
 
         // Loop through each character and convert to ascii then append to array list
-        for (char character : characterArray) {
-            asciiList.add((int)character);
+        for (int i = 0; i < k.length(); i++) {
+            asciiArray[i] = (int)k.charAt(i);
         }
 
         // Group the values to set size 
-        int counter = 1;
         String concatenatedValue = "";
         ArrayList<String> concatenatedStrings = new ArrayList<String>();
 
         // Loop through each ascii value
-        for (Integer integer : asciiList) {
+        for(int i = 0; i < asciiArray.length; i++){
             // Append the ascii value
-            concatenatedValue += integer;
+            concatenatedValue += asciiArray[i];
 
             // If 3 values have already been added to the concatenated value string, then store the string to the array and reset it
-            if(counter % setSizeHashing == 0){
+            if(i % setSizeHashing == 0 || i == asciiArray.length - 1){
                 concatenatedStrings.add(concatenatedValue);
                 concatenatedValue = "";
             }
-
-            // Increment counter
-            counter++;
         }
 
         // Sum each of the values in the concatenaded strings
@@ -314,7 +309,7 @@ public class StrHashTableCollisions{
         for (Node node : table) {
             // Handling null values
             if(node == null){
-                System.out.println(index + ": null, null");
+                System.out.println(index + ": Empty");
             }
             // Handling non-collision values
             else if(node.getNext() == null){

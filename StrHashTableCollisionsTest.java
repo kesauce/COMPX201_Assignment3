@@ -31,16 +31,16 @@ public class StrHashTableCollisionsTest {
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
-                        "0: null, null\r\n" + 
-                        "1: null, null\r\n" + 
-                        "2: null, null\r\n" + 
-                        "3: null, null\r\n" + 
-                        "4: null, null\r\n" + 
-                        "5: null, null\r\n" + 
-                        "6: null, null\r\n" + 
-                        "7: null, null\r\n" + 
-                        "8: null, null\r\n" + 
-                        "9: null, null";
+                        "0: Empty\r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: Empty\r\n" + 
+                        "8: Empty\r\n" + 
+                        "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);
@@ -62,16 +62,16 @@ public class StrHashTableCollisionsTest {
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
-                        "0: null, null\r\n" + 
-                        "1: key, value\r\n" + 
-                        "2: null, null\r\n" + 
-                        "3: null, null\r\n" + 
-                        "4: null, null\r\n" + 
-                        "5: null, null\r\n" + 
-                        "6: null, null\r\n" + 
-                        "7: null, null\r\n" + 
-                        "8: null, null\r\n" + 
-                        "9: null, null";
+                        "0: Empty\r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: Empty\r\n" + 
+                        "8: key, value\r\n" + 
+                        "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);
@@ -87,23 +87,23 @@ public class StrHashTableCollisionsTest {
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
         // Act
-        hashTable.insert("key1", "value1");
-        hashTable.insert("key2", "value2");
+        hashTable.insert("2", "value1");
+        hashTable.insert("22", "value2");
         hashTable.dump();
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
                         "Collision detected\r\n" +
-                        "0: null, null\r\n" + 
-                        "1: (key2, value2) (key1, value1) \r\n" + 
-                        "2: null, null\r\n" + 
-                        "3: null, null\r\n" + 
-                        "4: null, null\r\n" + 
-                        "5: null, null\r\n" + 
-                        "6: null, null\r\n" + 
-                        "7: null, null\r\n" +
-                        "8: null, null\r\n" + 
-                        "9: null, null";
+                        "0: (22, value2) (2, value1) \r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: Empty\r\n" + 
+                        "8: Empty\r\n" + 
+                        "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);
@@ -139,22 +139,22 @@ public class StrHashTableCollisionsTest {
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
         // Act
-        hashTable.insert("key1", "value1");
+        hashTable.insert("key", "value");
         hashTable.insert("keykey", "valuevalue");
         hashTable.dump();
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
-                            "0: null, null\r\n" + 
-                            "1: key1, value1\r\n" + 
-                            "2: keykey, valuevalue\r\n" + 
-                            "3: null, null\r\n" + 
-                            "4: null, null\r\n" + 
-                            "5: null, null\r\n" + 
-                            "6: null, null\r\n" + 
-                            "7: null, null\r\n" +
-                            "8: null, null\r\n" + 
-                            "9: null, null";
+                            "0: Empty\r\n" + 
+                            "1: Empty\r\n" + 
+                            "2: Empty\r\n" + 
+                            "3: Empty\r\n" + 
+                            "4: Empty\r\n" + 
+                            "5: keykey, valuevalue\r\n" + 
+                            "6: Empty\r\n" + 
+                            "7: Empty\r\n" +
+                            "8: key, value\r\n" + 
+                            "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);
@@ -176,16 +176,16 @@ public class StrHashTableCollisionsTest {
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
-                        "0: null, null\r\n" + 
-                        "1: null, null\r\n" + 
-                        "2: null, null\r\n" + 
-                        "3: null, null\r\n" + 
-                        "4: null, null\r\n" + 
-                        "5: null, null\r\n" + 
-                        "6: null, null\r\n" + 
-                        "7: null, null\r\n" + 
-                        "8: null, null\r\n" + 
-                        "9: null, null";
+                        "0: Empty\r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: Empty\r\n" + 
+                        "8: Empty\r\n" + 
+                        "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);
@@ -201,24 +201,24 @@ public class StrHashTableCollisionsTest {
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
         // Act
-        hashTable.insert("key1", "value1");
-        hashTable.insert("key2", "value2");
-        hashTable.delete("key1");
+        hashTable.insert("2", "value1");
+        hashTable.insert("22", "value2");
+        hashTable.delete("22");
         hashTable.dump();
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
                         "Collision detected\r\n" +
-                        "0: null, null\r\n" + 
-                        "1: key2, value2\r\n" + 
-                        "2: null, null\r\n" + 
-                        "3: null, null\r\n" + 
-                        "4: null, null\r\n" + 
-                        "5: null, null\r\n" + 
-                        "6: null, null\r\n" + 
-                        "7: null, null\r\n" +
-                        "8: null, null\r\n" + 
-                        "9: null, null";
+                        "0: 2, value1\r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: Empty\r\n" + 
+                        "8: Empty\r\n" + 
+                        "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);
@@ -234,24 +234,24 @@ public class StrHashTableCollisionsTest {
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
         // Act
-        hashTable.insert("key1", "value1");
-        hashTable.insert("key2", "value2");
-        hashTable.delete("key2");
+        hashTable.insert("2", "value1");
+        hashTable.insert("22", "value2");
+        hashTable.delete("2");
         hashTable.dump();
 
         String actual = outputStreamCaptor.toString().trim();
         String expected = 
                         "Collision detected\r\n" +
-                        "0: null, null\r\n" + 
-                        "1: key1, value1\r\n" + 
-                        "2: null, null\r\n" + 
-                        "3: null, null\r\n" + 
-                        "4: null, null\r\n" + 
-                        "5: null, null\r\n" + 
-                        "6: null, null\r\n" + 
-                        "7: null, null\r\n" +
-                        "8: null, null\r\n" + 
-                        "9: null, null";
+                        "0: 22, value2\r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: Empty\r\n" + 
+                        "8: Empty\r\n" + 
+                        "9: Empty";
 
         // Assert
         Assertions.assertEquals(expected, actual);

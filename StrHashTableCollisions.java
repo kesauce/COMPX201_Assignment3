@@ -112,7 +112,7 @@ public class StrHashTableCollisions{
             // Append the ascii value
             concatenatedValue += asciiArray[i];
 
-            // If 3 values have already been added to the concatenated value string, then store the string to the array and reset it
+            // If 3 values have already been added to the concatenated value string or we are at the end of the asciiArray, then store the string to the array and reset it
             if(i % setSizeHashing == 0 || i == asciiArray.length - 1){
                 concatenatedStrings.add(concatenatedValue);
                 concatenatedValue = "";

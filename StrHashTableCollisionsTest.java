@@ -543,4 +543,52 @@ public class StrHashTableCollisionsTest {
         // Assert
         Assertions.assertEquals(expected, actual);
     }
+
+    /**
+     * Tests whether rehash() run when capacity reaches more than 80%
+     */
+    @Test
+    @DisplayName("Test rehash(), dependent on insert and ()")
+    public void testRehash1(){
+        // Assign
+        StrHashTableCollisions hashTable = new StrHashTableCollisions();
+
+        // Act
+        hashTable.insert("1", "one");
+        hashTable.insert("2", "two");
+        hashTable.insert("3", "three");
+        hashTable.insert("4", "four");
+        hashTable.insert("5", "five");
+        hashTable.insert("6", "six");
+        hashTable.insert("7", "seven");
+        hashTable.insert("8", "eight");
+        hashTable.insert("9", "nine");
+        hashTable.dump();
+
+        String actual = outputStreamCaptor.toString().trim();
+        String expected = 
+                        "0: Empty\r\n" + 
+                        "1: Empty\r\n" + 
+                        "2: Empty\r\n" + 
+                        "3: Empty\r\n" + 
+                        "4: Empty\r\n" + 
+                        "5: Empty\r\n" + 
+                        "6: Empty\r\n" + 
+                        "7: 9, nine\r\n" + 
+                        "8: Empty\r\n" + 
+                        "9: 1, one\r\n" +
+                        "10: 2, two\r\n" + 
+                        "11: 3, three\r\n" +
+                        "12: 4, four\r\n" +
+                        "13: 5, five\r\n" +   
+                        "14: 6, six\r\n" +
+                        "15: 7, seven\r\n" +
+                        "16: 8, eight\r\n" + 
+                        "17: Empty\r\n" +   
+                        "18: Empty\r\n" +
+                        "19: Empty";
+
+        // Assert
+        Assertions.assertEquals(expected, actual);
+    }
 }

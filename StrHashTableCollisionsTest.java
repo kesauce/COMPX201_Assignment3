@@ -22,7 +22,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test dump()")
-    public void testDump1(){
+    public void testDump(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -51,7 +51,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test insert(), dependant on dump()")
-    public void testInsert1() {
+    public void testInsertOneValue() {
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -82,7 +82,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test insert(), dependent on dump()")
-    public void testInsert2(){
+    public void testInsertCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -114,7 +114,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test insert()")
-    public void testInsert3(){
+    public void testInsertDuplicates(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -134,7 +134,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test insert(), dependent on dump()")
-    public void testInsert4(){
+    public void testInsertTwoValues(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -165,7 +165,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test delete(), dependent on insert() and dump()")
-    public void testDelete1(){
+    public void testDeleteOneValue(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -196,7 +196,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test delete(), dependent on insert() and dump()")
-    public void testDelete2(){
+    public void testDeleteHeadOfBucket(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -229,7 +229,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test delete(), dependent on insert() and dump()")
-    public void testDelete3(){
+    public void testDeleteTailOfBucket(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -262,7 +262,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test delete()")
-    public void testDelete4(){
+    public void testDeleteNonExistingKeysNoCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -281,7 +281,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test delete()")
-    public void testDelete5(){
+    public void testDeleteNonExistingKeysWithCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -301,7 +301,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
-    public void testContains1(){
+    public void testContainsNoCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -318,7 +318,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
-    public void testContains2(){
+    public void testContainsTailOfBucket(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -336,7 +336,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
-    public void testContains3(){
+    public void testContainsHeadOfBucket(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -354,7 +354,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test contains(), dependent on insert()")
-    public void testContains5(){
+    public void testContainsNonExistingValues(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -371,7 +371,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test get(), dependent on insert()")
-    public void testGet1(){
+    public void testGetNoCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -389,7 +389,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test get(), dependent on insert()")
-    public void testGet2(){
+    public void testGetTailOfBucket(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -408,7 +408,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test get(), dependent on insert()")
-    public void testGet3(){
+    public void testGetHeadOfBucket(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -427,7 +427,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test get()")
-    public void testGet4(){
+    public void testGetNonExistingKeys(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -444,7 +444,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test isEmpty(), dependent on insert()")
-    public void testIsEmpty1(){
+    public void testIsEmptyWithValues(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -461,7 +461,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test isEmpty(), dependent on insert()")
-    public void testIsEmpty2(){
+    public void testIsEmptyWithoutValues(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -477,7 +477,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test isEmpty(), dependent on insert()")
-    public void testIsEmpty3(){
+    public void testIsEmptyAfterDelete(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -495,7 +495,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test count(), dependent on insert()")
-    public void testCount1(){
+    public void testCountWithoutCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -513,7 +513,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test count(), dependent on insert()")
-    public void testCount2(){
+    public void testCountWithCollisions(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -532,7 +532,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test count(), dependent on insert()")
-    public void testCount3(){
+    public void testCountEmptyTable(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
@@ -549,7 +549,7 @@ public class StrHashTableCollisionsTest {
      */
     @Test
     @DisplayName("Test rehash(), dependent on insert and ()")
-    public void testRehash1(){
+    public void testRehash(){
         // Assign
         StrHashTableCollisions hashTable = new StrHashTableCollisions();
 
